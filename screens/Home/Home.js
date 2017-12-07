@@ -9,7 +9,8 @@ import {
   FlatList , 
   List ,
   TouchableOpacity , 
-  ListView
+  ListView , 
+  Image
 } from 'react-native';
 import { Button , Text } from 'react-native-elements'
 import { Constants, Location, Permissions } from 'expo'
@@ -23,6 +24,14 @@ class Home extends Component {
 	 		loading: false,
 	 		location: null
 	 	};
+	}
+
+	static navigationOptions = {
+		tabBarIcon: ({tintColor}) => (
+			<Image 
+				source={require('./list.png')}
+			/>
+		)
 	}
 
 	getCurrentLocation = async() => {
@@ -60,11 +69,13 @@ class Home extends Component {
   		const { loading , data } = this.state
     	return (
 	      <View style={styles.contaier}>
-		      <StatusBar
-					 backgroundColor="blue"
-					 barStyle="light-content"
-					/>
       		<ScrollView style={{marginTop: 15}}>
+		      	<View style={styles.header}>
+							<Image 
+								style={{width: '100%' , height: '100%'}}
+								source={{uri: 'http://www.panjimas.com/wp-content/uploads/2017/03/RPTRA.jpg'}}
+							/>
+		      	</View>
 	      	{loading ? (
 					<Text>Loading...</Text>
 	      	) : 
@@ -95,18 +106,23 @@ const styles = StyleSheet.create({
 		backgroundColor: 'tomato'
 	},
 	scrollView: {
-		height: 400,
-		width: 400
+		height: 500,
+		width: 400,
+	},
+	header: {
+		width: '100%',
+		height: 200,
+		marginBottom: 20
 	},
 	card: {
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		width: '90%',
-		height: 90,
-		backgroundColor: 'white',
+		width: '95%',
+		height: 120,
+		backgroundColor: '#fff',
 		marginBottom: 15,
-		borderBottomWidth: 2,
-		borderBottomColor: 'deepskyblue',
+		borderBottomWidth: 5,
+		borderBottomColor: '#B2DBBF',
 		position: 'relative',
 		borderRadius: 4
 	},
@@ -125,14 +141,14 @@ const styles = StyleSheet.create({
 		top: 50
 	},
 	badge: {
-		backgroundColor: '#CF000F',
-		borderRadius: 30,
+		backgroundColor: '#70C1B3',
+		borderRadius: 5,
 		position: 'absolute',
-		bottom: 20,
+		top: 20,
 		right: 20,
 		color: 'white',
-		paddingLeft: 4,
-		paddingRight: 4,
+		paddingLeft: 7,
+		paddingRight: 7,
 		paddingTop: 2,
 		paddingBottom: 2
 	}
