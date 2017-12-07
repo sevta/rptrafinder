@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { MapView } from 'expo'
 
 import {
   StyleSheet,
@@ -12,175 +13,46 @@ import {
 class All extends Component {
 	constructor(props) {
 	  super(props);
-	
 	  this.state = {
-	  	data: [
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},	{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},	{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},	{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},	{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},	{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  		{
-	  			name: 'dasdasda',
-	  		},
-	  	]
+	  	data: [],
+	  	region: {
+	      latitude: -6.117664,
+	      longitude: 106.906349,
+	      latitudeDelta: 0.0922,
+	      longitudeDelta: 0.0421,
+	  	}
 	  };
 	}
+
+	componentWillMount() {
+		fetch('http://api.jakarta.go.id/ruang-publik/rptra')
+			.then(res => res.json())
+			.then(data => {
+				const alldata = data.data
+				this.setState({data: alldata})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+
   render() {
+  	const { data , region } = this.state
     return (
 		<View>
-			{this.state.data.length && this.state.data.map(o => (
-				<Text>{o.name}</Text>
-			))}
+      <MapView
+        style={{ width: 450 , height: 700 }}
+        region={region}
+      >
+      	{data.map((marker , i) => (
+	      	<MapView.Marker 
+		      	key={i+1}
+						coordinate={marker.location}
+						title={`RPTRA ${marker.nama_rptra}`}
+						description={marker.fasilitas}
+	      	/>
+      	))}
+      </MapView>
 		</View>
     );
   }
