@@ -1,5 +1,10 @@
 {
   "expo": {
-    "sdkVersion": "23.0.0"
+    "sdkVersion": "23.0.0",
+    "androidStatusBarColor":"#FFFFFF",
+		  "androidStatusBar": {
+		    "barStyle": "light-content",
+		    "backgroundColor": "#0D8F4F"
+		  }
   }
 }

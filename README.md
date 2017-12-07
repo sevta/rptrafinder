@@ -3,7 +3,13 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## Table of Contents
-
+data.map((obj , i) => (
+            <TouchableOpacity onPress={this.toSingleView.bind(this , obj)}>
+              <View style={styles.card} >
+                <Text h5>{obj.nama_rptra}</Text>
+              </View>
+            </TouchableOpacity>
+          )
 * [Updating to New Releases](#updating-to-new-releases)
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)

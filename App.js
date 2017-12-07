@@ -19,8 +19,8 @@ const HomeStack = StackNavigator({
 	navigationOptions: {
 		title: 'Home',
      	gesturesEnabled: true,
-		headerTintColor: '#222',
-		headerStyle: {marginTop: Expo.Constants.statusBarHeight , backgroundColor: '#fff'},
+		headerTintColor: '#fff',
+		headerStyle: {marginTop: Expo.Constants.statusBarHeight , backgroundColor: '#CF000F'},
 		// header: (
 		// 	<Header
 		// 		outerContainerStyles={{marginTop: Expo.Constants.statusBarHeight , backgroundColor: 'white'}}
@@ -37,8 +37,8 @@ const PrimaryNav = TabNavigator({
 } , {
 	tabBarPosition: 'bottom',
 	tabBarOptions: {
-		style: {backgroundColor: '#fff'},
-		labelStyle: {color: '#222'}
+		style: {backgroundColor: '#CF000F'},
+		labelStyle: {color: '#fff'}
 	}
 })
 

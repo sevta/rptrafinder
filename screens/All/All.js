@@ -41,6 +41,7 @@ class All extends Component {
     return (
 		<View>
       <MapView
+	      minZoomLevel={0}
         style={{ width: 450 , height: 700 }}
         region={region}
       >

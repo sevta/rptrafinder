@@ -34,7 +34,12 @@ class Single extends Component {
 
 					<MapView
 	        style={{ width: 450 , height: 200 }}
-	        region={region}
+	        region={{
+	        	...data.location,
+			      latitudeDelta: 0.0922,
+			      longitudeDelta: 0.0421,
+	        }}
+	        minZoomLevel={20}
 					>
 						<MapView.Marker 
 							coordinate={data.location}
